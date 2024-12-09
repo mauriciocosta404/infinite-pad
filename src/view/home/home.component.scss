@@ -1,0 +1,43 @@
+.banner{
+    margin-top: 4rem;
+    padding: 0 5rem;
+    display: grid ;
+    width: 100%;
+    grid-template-columns: 2fr 1fr;
+
+    .content{
+        display: flex; 
+        flex-direction: column;
+        gap: 2rem;   
+
+        .buttons-wrapper{
+            display: flex;
+            gap: 1rem;
+
+            .btn{
+                display: flex;
+                align-items: center;
+                padding: .5rem;
+                gap: .2rem;
+                background-color: transparent;
+                color: #fff;
+
+                span{
+                    font-size: 1rem ;
+                }
+            }
+            .first-btn{
+                background-color: var(--bg-primary);
+                color: var(--text-primary);
+            }
+        }
+    }
+
+    h1{
+        font-size: 4rem;
+    }
+
+    p{
+        font-size: .9rem;
+    }
+}

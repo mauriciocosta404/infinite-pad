@@ -1,0 +1,25 @@
+header{
+    padding: 0 4.5rem;
+    width: 100%;
+
+    nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .navigation{
+            ul{
+                list-style-type: none;
+                display: flex;
+                gap: 2rem;
+            }
+        }
+
+        .button-wrapper button{
+            padding: 1rem 2rem;
+            border: none;
+            background: var(--bg-primary);
+            color: #1b1f24;
+        }
+    }
+}

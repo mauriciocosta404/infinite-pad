@@ -1,0 +1,7 @@
+<main>    
+      <div class="cards-wrapper">
+        @for (note of notes; track $index) {
+            <app-note-card [note]="note"></app-note-card>
+        }
+    </div>
+</main>

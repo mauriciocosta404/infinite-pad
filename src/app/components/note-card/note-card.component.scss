@@ -1,0 +1,25 @@
+.card{
+    width: 100%;
+    padding: 2rem;
+    border-radius: .4rem;
+    font-size: 3rem;
+    cursor: pointer;
+    color: #fff;
+    background-color: var(--third-color);
+
+    display: flex;
+    gap: .7rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    &:hover{
+        background-color: var(--bg-primary);
+        transition: all linear .2s background-color;
+        color: var(--third-color);
+    }
+
+    p{
+        font-size: 1rem;
+    }
+}

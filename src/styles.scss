@@ -1,0 +1,23 @@
+:root{
+    --bg-primary:#a9fb50;
+    --text-primary:#1b1f24;
+    --third-color:#213237;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;   
+    
+    font-family:"Roboto", sans-serif;
+}
+
+body{
+    background: linear-gradient(45deg, #1b1f24,#21262c, #3b5159);
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
