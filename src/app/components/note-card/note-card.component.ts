@@ -13,24 +13,32 @@ interface NoteProp{
   templateUrl: './note-card.component.html',
   styleUrl: './note-card.component.scss'
 })
-export class NoteCardComponent implements OnInit { 
+  export class NoteCardComponent implements OnInit { 
   @Input() note!: NoteProp;
+  audio!: HTMLAudioElement;
   isPlaying = false;
 
   ngOnInit(): void {
   }
 
-  playOrPauseSound(note: NoteProp): void {
-    this.isPlaying 
+  onClickHandle( {path }: NoteProp): void {
+    this.isPlaying = !this.isPlaying;
+
+    if(this.isPlaying) return this.playSound(path);
+    this.pauseSound(path);  
   }
 
-  public playSound(path: string){
-    const audio = new Audio(path);
-    audio.play();
+  private playSound(path: string){
+    if (!this.audio) this.audio = new Audio(path);  
+    this.audio.loop = true;
+
+    this.audio.play();
   }
 
-  public pauseSound(path: string){
-    const audio = new Audio(path);
-    audio.pause();
+  private pauseSound(path: string){
+    if (!this.audio) this.audio = new Audio(path);  
+
+  
+    this.audio.pause();
   }
 }
