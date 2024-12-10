@@ -15,11 +15,38 @@ header{
             }
         }
 
-        .button-wrapper button{
+        .button-wrapper button:first-child{
             padding: 1rem 2rem;
             border: none;
             background: var(--bg-primary);
             color: #1b1f24;
         }
+
+        .button-wrapper button:last-child{
+            display: none;
+        }
     }
 }
+
+@media screen and (max-width: 768px) {
+    header {
+        padding: 0 1.5rem;
+
+        nav{
+            .navigation{
+                display: none;
+            }
+
+            .button-wrapper button:first-child{
+                display: none;
+            }
+
+            .button-wrapper button:last-child{
+                display: flex;
+                background-color: transparent;
+                color: #fff;
+                font-size: 1rem;
+            }
+        }
+    }
+  }
