@@ -108,34 +108,13 @@
      color: #fff;
      background-color: var(--green);
  }
- .icons-settings,#menu-bars {
-     cursor: pointer;
-     margin-left: .5rem;
-     padding: 1.3rem;
-     line-height: 4.5rem;
-     border-radius: 50%;
-     text-align: center;
-     font-size: 1.7rem;
-     color: 50%;
-     background-color: #eee;
-}
-  .icons-settings:hover,#menu-bars:hover{
-     color: #fff;
-     background-color: var(--green);
-     transform: rotate(360deg);
-}
- header #menu-bars{
-     display: none;
- }
-
+ 
 @media (max-width:768px){
     
     .icons{
         display:flex;
     }
-    header .icons #menu-bars{
-        display: inline-block;
-    }
+    
     header .navbar{
         position: absolute;
         top: 100%; left: 0;right: 0;
