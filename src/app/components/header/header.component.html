@@ -1,20 +1,39 @@
 <header>
-    <nav>
+    <div>
+        <a href="/">
+            <img width="120" src="/assets/dark-logo.png" alt="">
+        </a>
+    </div>
+
+        <nav class="navbar" [ngClass]="{active: isActive}">
+            <a href="/home">Home</a>
+            <a href="/about">About</a>
+            <a href="ambient-pad">Ambient pad</a>
+        </nav>
+
+        <div class="icons">
+            <div class="bars" (click)="handleActiveNavigation()">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+        </div>
+    <!--<nav>
         <div>
             <img width="120" src="/assets/dark-logo.png" alt="">
         </div>
     
-        <div class="navigation">
-            <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="ambient-pad">Ambient pad</a></li>
-            </ul>
-        </div>
+        <ng-container class="navigation">
+            <div   [ngClass]="{active: isActive}">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="ambient-pad">Ambient pad</a></li>
+                </ul>
+            </div>
+        </ng-container>
     
         <div class="button-wrapper">
             <button>Sign Up</button>
-            <button><span class="material-symbols-outlined">menu</span></button>
+            <button><span (click)="handleActiveNavigation()" class="material-symbols-outlined">menu</span></button>
         </div>
-    </nav>
+    </nav>-->
 </header>
