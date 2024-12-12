@@ -18,10 +18,12 @@ interface NoteProp{
   audio!: HTMLAudioElement;
   isPlaying = false;
 
+  static currentAudio: HTMLAudioElement | null = null;
+
   ngOnInit(): void {
   }
 
-  onClickHandle( {path }: NoteProp): void {
+  onClickHandle({ path }: NoteProp): void {
     this.isPlaying = !this.isPlaying;
 
     if(this.isPlaying) return this.playSound(path);
@@ -29,16 +31,20 @@ interface NoteProp{
   }
 
   private playSound(path: string){
+    if (NoteCardComponent.currentAudio) NoteCardComponent.currentAudio.pause();
+
     if (!this.audio) this.audio = new Audio(path);  
     this.audio.loop = true;
+
+    NoteCardComponent.currentAudio = this.audio;
 
     this.audio.play();
   }
 
   private pauseSound(path: string){
-    if (!this.audio) this.audio = new Audio(path);  
-
-  
+    if (!this.audio) return;
     this.audio.pause();
+    
+    this.audio.currentTime = 0;
   }
 }
