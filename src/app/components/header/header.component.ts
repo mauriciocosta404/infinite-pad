@@ -12,6 +12,5 @@ export class HeaderComponent {
 
   public handleActiveNavigation = () => {
     this.isActive = !this.isActive;
-    console.log(this.isActive);
   }
 }

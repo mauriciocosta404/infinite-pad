@@ -1,5 +1,5 @@
 .banner{
-    margin-top: 4rem;
+    margin-top: 15rem;
     padding: 0 5rem;
     display: grid ;
     width: 100%;
@@ -40,4 +40,18 @@
     p{
         font-size: .9rem;
     }
+}
+
+@media (max-width: 768px) {
+    .banner{
+        margin-top: 10rem;
+        display: flex;
+        flex-direction: column;
+        padding: 0 2.5rem;
+        
+        h1{
+            font-size: 2rem;
+        }
+    }
+
 }

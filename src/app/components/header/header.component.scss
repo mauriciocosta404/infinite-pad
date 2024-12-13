@@ -89,6 +89,7 @@
   header{
     position: fixed;
     top: 0; left: 0; right: 0;
+    height: 7rem;
     padding: 0 1.5rem;
     display: flex;
     align-items: center;
@@ -110,7 +111,10 @@
  }
  
 @media (max-width:768px){
-    
+    header{
+        height: 5rem;
+    }
+
     .icons{
         display:flex;
     }
