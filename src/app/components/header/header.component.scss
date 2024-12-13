@@ -86,9 +86,11 @@
     }
   }*/
 
-  header{
+  header {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 0; 
+    left: 0; 
+    right: 0;
     height: 7rem;
     padding: 0 1.5rem;
     display: flex;
@@ -96,11 +98,13 @@
     justify-content: space-between;
     z-index: 1000;
     box-shadow: var(--box-shadow);
+    background: linear-gradient(45deg, rgba(27, 31, 36, 0.9), rgba(33, 38, 44, 0.9), #3b5159);
+    backdrop-filter: blur(5rem); 
 }
 
  header .navbar a{
-    font-size: 1.7rem;
-    border-radius: .5rem;
+    font-size: 1rem;
+    border-radius: .3rem;
     padding: .5rem 1.5rem;
     color: var(--light-color);
 }
