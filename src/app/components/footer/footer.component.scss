@@ -157,15 +157,16 @@ ul {
 .subscribe-form button {
     position: absolute;
     right: 0;
-    background: #ff5e14;
-    padding: 13px 20px;
-    border: 1px solid #ff5e14;
     top: 0;
+    background: #ff5e14;
+    border: 1px solid #ff5e14;
     color: #fff;
+    height: 100%;
+    padding: 10px;
 }
 
 .subscribe-form button i {
-    font-size: 22px;
+    font-size: 20px;
     transform: rotate(-6deg);
 }
 
