@@ -15,7 +15,7 @@ export default function Home() {
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
         <Link
           to="/ambient-pad"
           className="flex flex-col items-center p-8 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all transform hover:scale-105"
@@ -35,7 +35,7 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="w-full max-w-5xl bg-gray-800 rounded-lg p-8 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+      <div className="w-full max-w-4xl bg-gray-800 rounded-lg p-8 animate-fade-in" style={{ animationDelay: '0.4s' }}>
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-48 h-48 rounded-full overflow-hidden flex-shrink-0">
             <img
