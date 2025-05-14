@@ -31,150 +31,232 @@ export default function AmbientPad(): JSX.Element {
   const [volume, setVolume] = useState<number>(0.7);
   const [currentKey, setCurrentKey] = useState<KeyType>(KEYS[0]);
   
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  // Refs for audio elements and timers
+  const primaryAudioRef = useRef<HTMLAudioElement | null>(null);
+  const secondaryAudioRef = useRef<HTMLAudioElement | null>(null);
+  const crossfadeTimerRef = useRef<number | null>(null);
   const loopCheckIntervalRef = useRef<number | null>(null);
-  const fadeIntervalRef = useRef<number | null>(null);
-
-  // Initialize audio element
+  
+  // Initialize audio elements
   useEffect(() => {
-    audioRef.current = new Audio();
-    audioRef.current.loop = false; // We'll handle looping manually
-    audioRef.current.volume = volume;
+    // Create primary audio element
+    primaryAudioRef.current = new Audio();
+    primaryAudioRef.current.loop = false; // We'll handle looping manually
+    primaryAudioRef.current.volume = volume;
+    
+    // Create secondary audio element for crossfading
+    secondaryAudioRef.current = new Audio();
+    secondaryAudioRef.current.loop = false;
+    secondaryAudioRef.current.volume = 0;
     
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = '';
+      // Clean up on component unmount
+      if (primaryAudioRef.current) {
+        primaryAudioRef.current.pause();
+        primaryAudioRef.current.src = '';
       }
-      clearLoopCheck();
+      
+      if (secondaryAudioRef.current) {
+        secondaryAudioRef.current.pause();
+        secondaryAudioRef.current.src = '';
+      }
+      
+      if (crossfadeTimerRef.current) {
+        clearTimeout(crossfadeTimerRef.current);
+      }
+      
+      if (loopCheckIntervalRef.current) {
+        clearInterval(loopCheckIntervalRef.current);
+      }
     };
   }, []);
-
+  
   // Update volume when it changes
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
+    if (primaryAudioRef.current) {
+      primaryAudioRef.current.volume = volume;
     }
   }, [volume]);
-
-  // Handle play/pause and key changes
+  
+  // Set up continuous playback monitoring
   useEffect(() => {
     if (isPlaying) {
-      startPlayback();
+      startContinuousPlayback();
     } else {
-      stopPlayback();
+      stopContinuousPlayback();
     }
     
     return () => {
-      stopPlayback();
+      stopContinuousPlayback();
     };
   }, [isPlaying, currentKey]);
-
-  const startPlayback = async () => {
-    if (!audioRef.current) return;
+  
+  // Function to start continuous playback with seamless looping
+  const startContinuousPlayback = (): void => {
+    const audio = primaryAudioRef.current;
     
-    try {
-      audioRef.current.src = currentKey.file;
-      audioRef.current.currentTime = 10; // Start at 10 seconds to have buffer
-      await audioRef.current.play();
-      
-      // Start checking for loop point
-      setupLoopCheck();
-    } catch (err) {
-      console.error("Error starting playback:", err);
-    }
-  };
-
-  const stopPlayback = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
-    clearLoopCheck();
-  };
-
-  const setupLoopCheck = () => {
-    clearLoopCheck();
+    if (!audio) return;
     
+    // Load the current key's audio file
+    audio.src = currentKey.file;
+    audio.volume = volume;
+    audio.play().catch(err => console.error("Error playing audio:", err));
+    
+    // Set up the loop check interval
     loopCheckIntervalRef.current = window.setInterval(() => {
-      if (!audioRef.current || !audioRef.current.duration) return;
+      // If there's no duration yet (audio not loaded) or audio not playing, skip this check
+      if (!audio.duration || audio.paused) return;
       
-      // Calculate remaining time (with 2 second buffer)
-      const remaining = audioRef.current.duration - audioRef.current.currentTime;
+      // If less than 5 seconds remaining before the end of the audio
+      const timeRemaining = audio.duration - audio.currentTime;
       
-      // If we're within 10 seconds of the end, jump back to 10 seconds
-      if (remaining < 10) {
-        // Smooth transition by fading out and in quickly
-        fadeAudio(0.3, () => {
-          if (audioRef.current) {
-            audioRef.current.currentTime = 10;
-            fadeAudio(volume);
-          }
-        });
+      // When we're approaching the end of the track (5 seconds before end)
+      if (timeRemaining < 5 && timeRemaining > 0) {
+        // Prepare the secondary audio for crossfade
+        const secondary = secondaryAudioRef.current;
+        if (!secondary) return;
+        
+        secondary.src = currentKey.file;
+        secondary.volume = 0;
+        
+        // Start playing from the beginning with a little buffer
+        // We start from 0.5 seconds in to avoid any initial silence
+        secondary.currentTime = 0.5;
+        secondary.play().catch(err => console.error("Error playing secondary audio:", err));
+        
+        // Start crossfade process
+        crossfade();
       }
-    }, 500); // Check every 500ms
+    }, 1000); // Check every second
   };
-
-  const clearLoopCheck = () => {
+  
+  // Function to handle crossfade between audio elements
+  const crossfade = (): void => {
+    const primary = primaryAudioRef.current;
+    const secondary = secondaryAudioRef.current;
+    
+    if (!primary || !secondary) return;
+    
+    // Duration of the crossfade in milliseconds
+    const crossfadeDuration = 3000;
+    const stepTime = 50; // Update every 50ms
+    const steps = crossfadeDuration / stepTime;
+    const volumeStep = volume / steps;
+    
+    let step = 0;
+    
+    // Start crossfade process
+    const fadeInterval = window.setInterval(() => {
+      step++;
+      
+      // Gradually decrease volume of primary audio
+      primary.volume = Math.max(0, volume - (step * volumeStep));
+      
+      // Gradually increase volume of secondary audio
+      secondary.volume = Math.min(volume, step * volumeStep);
+      
+      // When crossfade is complete
+      if (step >= steps) {
+        clearInterval(fadeInterval);
+        
+        // Stop the primary audio
+        primary.pause();
+        
+        // Swap the audio references
+        const temp = primaryAudioRef.current;
+        primaryAudioRef.current = secondaryAudioRef.current;
+        secondaryAudioRef.current = temp;
+      }
+    }, stepTime);
+  };
+  
+  // Function to stop all playback
+  const stopContinuousPlayback = (): void => {
+    if (primaryAudioRef.current) {
+      primaryAudioRef.current.pause();
+    }
+    
+    if (secondaryAudioRef.current) {
+      secondaryAudioRef.current.pause();
+    }
+    
     if (loopCheckIntervalRef.current) {
       clearInterval(loopCheckIntervalRef.current);
       loopCheckIntervalRef.current = null;
     }
-    if (fadeIntervalRef.current) {
-      clearInterval(fadeIntervalRef.current);
-      fadeIntervalRef.current = null;
+    
+    if (crossfadeTimerRef.current) {
+      clearTimeout(crossfadeTimerRef.current);
+      crossfadeTimerRef.current = null;
     }
   };
-
-  const fadeAudio = (targetVolume: number, callback?: () => void) => {
-    if (!audioRef.current) return;
-    
-    const initialVolume = audioRef.current.volume;
-    const duration = 300; // 300ms fade duration
-    const steps = 10;
-    const stepTime = duration / steps;
-    const volumeStep = (targetVolume - initialVolume) / steps;
-    
-    let step = 0;
-    
-    clearInterval(fadeIntervalRef.current!);
-    
-    fadeIntervalRef.current = window.setInterval(() => {
-      step++;
-      
-      if (audioRef.current) {
-        audioRef.current.volume = initialVolume + (step * volumeStep);
-      }
-      
-      if (step >= steps) {
-        clearInterval(fadeIntervalRef.current!);
-        if (callback) callback();
-      }
-    }, stepTime);
-  };
-
-  const togglePlay = async () => {
+  
+  // Toggle play/pause
+  const togglePlay = async (): Promise<void> => {
     if (!isPlaying) {
+      // Ensure we have a fresh start
+      if (primaryAudioRef.current) {
+        primaryAudioRef.current.currentTime = 0;
+      }
       setIsPlaying(true);
     } else {
       setIsPlaying(false);
     }
   };
-
-  const changeKey = (key: KeyType) => {
+  
+  // Change the key of the pad
+  const changeKey = (key: KeyType): void => {
     if (key.name === currentKey.name) return;
     
-    // Fade out current audio before changing key
-    fadeAudio(0, () => {
+    // If currently playing, perform a smooth transition
+    if (isPlaying && primaryAudioRef.current) {
+      // First, fade out the current audio
+      const fadeOutSteps = 20;
+      const fadeOutDuration = 1000; // 1 second fade out
+      const stepTime = fadeOutDuration / fadeOutSteps;
+      const volumeStep = volume / fadeOutSteps;
+      
+      let step = 0;
+      const fadeOutInterval = window.setInterval(() => {
+        step++;
+        if (primaryAudioRef.current) {
+          primaryAudioRef.current.volume = Math.max(0, volume - (step * volumeStep));
+        }
+        
+        // When fade out is complete
+        if (step >= fadeOutSteps) {
+          clearInterval(fadeOutInterval);
+          
+          // Change to the new key
+          setCurrentKey(key);
+          
+          // Short delay before starting the new key
+          crossfadeTimerRef.current = window.setTimeout(() => {
+            if (primaryAudioRef.current) {
+              primaryAudioRef.current.src = key.file;
+              primaryAudioRef.current.volume = 0;
+              primaryAudioRef.current.play().catch(err => console.error("Error playing new key audio:", err));
+              
+              // Fade in the new audio
+              let fadeInStep = 0;
+              const fadeInInterval = window.setInterval(() => {
+                fadeInStep++;
+                if (primaryAudioRef.current) {
+                  primaryAudioRef.current.volume = Math.min(volume, fadeInStep * volumeStep);
+                }
+                
+                if (fadeInStep >= fadeOutSteps) {
+                  clearInterval(fadeInInterval);
+                }
+              }, stepTime);
+            }
+          }, 100);
+        }
+      }, stepTime);
+    } else {
+      // If not playing, just update the current key
       setCurrentKey(key);
-      if (isPlaying && audioRef.current) {
-        audioRef.current.src = key.file;
-        audioRef.current.currentTime = 10;
-        audioRef.current.volume = 0;
-        audioRef.current.play().then(() => {
-          fadeAudio(volume);
-        });
-      }
-    });
+    }
   };
 
   const bgColor = theme === 'dark' ? 'bg-dark-surface' : 'bg-light-surface';
