@@ -84,7 +84,7 @@ const translations = {
     'about.description2': 'Whether you\'re leading worship in a large congregation or practicing at home, our ambient pad and metronome tools are designed to support your ministry.',
     'about.featuresTitle': 'Features',
     'about.features.infinitePad': 'Infinite Piano Pad',
-    'en.about.features.soundOptions': 'Multiple Sound Options',
+    'about.features.soundOptions': 'Multiple Sound Options',
     'about.features.metronome': 'Professional Metronome',
     'about.features.tapTempo': 'Tempo Tap Function',
     'about.features.darkMode': 'Dark Mode Interface',

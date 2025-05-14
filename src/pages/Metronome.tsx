@@ -80,7 +80,7 @@ export default function Metronome() {
     <div className="max-w-4xl mx-auto px-4 animate-fade-in">
       <h1 className="text-4xl font-bold mb-8 text-center">{t('metronome.title')}</h1>
       
-      <div className="bg-gray-800 rounded-lg p-8">
+      <div className="bg-white shadow dark:bg-gray-800 rounded-lg p-8">
         <div className="flex flex-col items-center space-y-8">
           <div className="text-6xl font-bold text-purple-400 animate-pulse-slow">
             {bpm} <span className="text-2xl text-gray-400">BPM</span>
@@ -94,7 +94,7 @@ export default function Metronome() {
                 className={`px-4 py-2 rounded-full transition-colors ${
                   selectedSound.id === sound.id
                     ? 'bg-purple-500 text-white'
-                    : 'bg-gray-700 hover:bg-gray-600'
+                    : 'bg-gray-700 hover:bg-gray-600 text-white dark:text-gray-400'
                 }`}
               >
                 {sound.name}
@@ -102,7 +102,7 @@ export default function Metronome() {
             ))}
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 text-white dark:text-gray-400">
             <button
               onClick={() => adjustBpm(-1)}
               className="w-12 h-12 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center transition-transform hover:scale-105"
@@ -143,39 +143,39 @@ export default function Metronome() {
       </div>
       
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-gray-800 rounded-lg p-6">
+        <div className="bg-white shadow dark:bg-gray-800 rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">{t('metronome.commonTempos')}</h2>
           <div className="grid grid-cols-2 gap-4">
             <button
               onClick={() => setBpm(60)}
-              className="p-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors"
+              className="p-2 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
             >
               {t('metronome.slow')} (60 BPM)
             </button>
             <button
               onClick={() => setBpm(90)}
-              className="p-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors"
+              className="p-2 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
             >
               {t('metronome.moderate')} (90 BPM)
             </button>
             <button
               onClick={() => setBpm(120)}
-              className="p-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors"
+              className="p-2 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
             >
               {t('metronome.fast')} (120 BPM)
             </button>
             <button
               onClick={() => setBpm(140)}
-              className="p-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors"
+              className="p-2 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
             >
               {t('metronome.veryFast')} (140 BPM)
             </button>
           </div>
         </div>
         
-        <div className="bg-gray-800 rounded-lg p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
           <h2 className="text-xl font-semibold mb-4">Tips</h2>
-          <ul className="space-y-2 text-gray-300">
+          <ul className="space-y-2 text-gray-500 dark:text-gray-300">
           <li>• {t('metronome.tips.sound')}</li>
             <li>• {t('metronome.tips.headphones')}</li>
             <li>• {t('metronome.tips.slower')}</li>

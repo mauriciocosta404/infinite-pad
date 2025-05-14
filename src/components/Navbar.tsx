@@ -45,7 +45,7 @@ export default function Navbar() {
       theme === 'dark' 
         ? 'bg-dark-surface border-dark-muted' 
         : 'bg-light-surface border-light-muted shadow-sm'
-    } shadow sticky top-0 z-50`}>
+    } shadow sticky py-2 top-0 z-50`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center">
