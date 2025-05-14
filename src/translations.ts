@@ -57,7 +57,43 @@ const translations = {
     'pad.ambientcard.desc': 'Create beautiful atmospheric sounds for worship',
     'pad.welcome.title': 'Welcome to WorshipPad',
     'pad.welcome.desc':'Enhance your worship experience with our infinite piano pad and precise metronome tools.',
-
+    metronome: {
+      title: "Metronome",
+      bpm: "BPM",
+      sounds: {
+        default: "Default",
+        kick: "Kick",
+        snare: "Snare",
+        crash: "Crash"
+      },
+      commonTempos: "Common Tempos",
+      slow: "Slow",
+      moderate: "Moderate",
+      fast: "Fast",
+      veryFast: "Very Fast",
+      tips: {
+        title: "Practice Tips",
+        sound: "Choose a sound that stands out for better hearing.",
+        headphones: "Use headphones for better precision.",
+        slower: "Practice slowly before speeding up.",
+        visual: "Use visual indicators to follow the beat."
+      }
+    },
+    'about.title1': 'About WorshipPad',
+    'about.description1': 'WorshipPad was created with love to serve the worship community. Our goal is to provide high-quality tools that enhance the worship experience and help teams lead with excellence.',
+    'about.description2': 'Whether you\'re leading worship in a large congregation or practicing at home, our ambient pad and metronome tools are designed to support your ministry.',
+    'about.featuresTitle': 'Features',
+    'about.features.infinitePad': 'Infinite Piano Pad',
+    'en.about.features.soundOptions': 'Multiple Sound Options',
+    'about.features.metronome': 'Professional Metronome',
+    'about.features.tapTempo': 'Tempo Tap Function',
+    'about.features.darkMode': 'Dark Mode Interface',
+    'about.usageTitle': 'How to Use',
+    'about.usage.selectSound': 'Select your desired pad sound',
+    'about.usage.adjust': 'Adjust volume and effects',
+    'about.usage.useMetronome': 'Use metronome for timing',
+    'about.usage.savePresets': 'Save your favorite presets',
+    'about.usage.perfectLive': 'Perfect for live worship',
   },
   pt: {
     'nav.home': 'Início',
@@ -116,7 +152,44 @@ const translations = {
     'pad.metronomecard.title':'Metrónomo',
     'pad.ambientcard.desc':'Crie belos sons atmosféricos para o culto',
     'pad.welcome.title': 'Bem-vindo ao WorshipPad',
-    'pad.welcome.desc':'Melhore a sua experiência de adoração com o nosso teclado de piano infinito e ferramentas de metrónomo precisas.'
+    'pad.welcome.desc':'Melhore a sua experiência de adoração com o nosso teclado de piano infinito e ferramentas de metrónomo precisas.',
+    metronome: {
+      title: "Metrônomo",
+      bpm: "BPM",
+      sounds: {
+        default: "Padrão",
+        kick: "Bumbo",
+        snare: "Caixa",
+        crash: "Prato"
+      },
+      commonTempos: "Tempos Comuns",
+      slow: "Lento",
+      moderate: "Moderado",
+      fast: "Rápido",
+      veryFast: "Muito Rápido",
+      tips: {
+        title: "Dicas para Praticar",
+        sound: "Escolha um som que se destaque para ouvir melhor.",
+        headphones: "Use fones de ouvido para maior precisão.",
+        slower: "Pratique devagar antes de acelerar.",
+        visual: "Use os indicadores visuais para acompanhar a batida."
+      }
+    },
+    'about.title1': 'Sobre o WorshipPad',
+    'about.description1': 'O WorshipPad foi criado com amor para servir a comunidade de louvor. Nosso objetivo é oferecer ferramentas de alta qualidade que melhorem a experiência de adoração e ajudem as equipes a liderar com excelência.',
+    'about.description2': 'Seja liderando o louvor em uma grande congregação ou praticando em casa, nossas ferramentas de pad ambiente e metrônomo foram feitas para apoiar o seu ministério.',
+    'about.featuresTitle': 'Recursos',
+    'about.features.infinitePad': 'Pad de Piano Infinito',
+    'about.features.soundOptions': 'Várias Opções de Som',
+    'about.features.metronome': 'Metrônomo Profissional',
+    'about.features.tapTempo': 'Função de Tap Tempo',
+    'about.features.darkMode': 'Interface em Modo Escuro',
+    'about.usageTitle': 'Como Usar',
+    'about.usage.selectSound': 'Selecione o som do pad desejado',
+    'about.usage.adjust': 'Ajuste o volume e os efeitos',
+    'about.usage.useMetronome': 'Use o metrônomo para marcar o tempo',
+    'about.usage.savePresets': 'Salve seus presets favoritos',
+    'about.usage.perfectLive': 'Perfeito para cultos ao vivo',
   }
 };
 

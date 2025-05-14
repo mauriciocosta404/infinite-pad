@@ -1,45 +1,44 @@
-import React from 'react';
 import { Heart } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function About() {
+  const { t } = useLanguage();
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8 text-center">About WorshipPad</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">{t('about.title')}</h1>
       
       <div className="bg-gray-800 rounded-lg p-8 mb-8">
         <div className="flex justify-center mb-6">
           <Heart className="w-16 h-16 text-purple-400" />
         </div>
         <p className="text-gray-300 mb-6">
-          WorshipPad was created with love to serve the worship community. Our goal is to provide
-          high-quality tools that enhance the worship experience and help teams lead with excellence.
+          {t('about.description1')}
         </p>
         <p className="text-gray-300">
-          Whether you're leading worship in a large congregation or practicing at home, our ambient pad
-          and metronome tools are designed to support your ministry.
+          {t('about.description2')}
         </p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-gray-800 rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4">Features</h2>
+          <h2 className="text-2xl font-semibold mb-4">{t('about.featuresTitle')}</h2>
           <ul className="space-y-2 text-gray-300">
-            <li>• Infinite Piano Pad</li>
-            <li>• Multiple Sound Options</li>
-            <li>• Professional Metronome</li>
-            <li>• Tempo Tap Function</li>
-            <li>• Dark Mode Interface</li>
+          <li>• {t('about.features.infinitePad')}</li>
+            <li>• {t('about.features.soundOptions')}</li>
+            <li>• {t('about.features.metronome')}</li>
+            <li>• {t('about.features.tapTempo')}</li>
+            <li>• {t('about.features.darkMode')}</li>
           </ul>
         </div>
         
         <div className="bg-gray-800 rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4">How to Use</h2>
+          <h2 className="text-2xl font-semibold mb-4">{t('about.usageTitle')}</h2>
           <ul className="space-y-2 text-gray-300">
-            <li>• Select your desired pad sound</li>
-            <li>• Adjust volume and effects</li>
-            <li>• Use metronome for timing</li>
-            <li>• Save your favorite presets</li>
-            <li>• Perfect for live worship</li>
+          <li>• {t('about.usage.selectSound')}</li>
+            <li>• {t('about.usage.adjust')}</li>
+            <li>• {t('about.usage.useMetronome')}</li>
+            <li>• {t('about.usage.savePresets')}</li>
+            <li>• {t('about.usage.perfectLive')}</li>
           </ul>
         </div>
       </div>

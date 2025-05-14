@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import * as Tone from 'tone';
 import { Play, Pause, Minus, Plus } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const SOUNDS = [
   { id: 'default', name: 'Default Click', note: 'A5' },
@@ -73,9 +74,11 @@ export default function Metronome() {
     setBpm((prev) => Math.min(Math.max(prev + amount, 40), 220));
   };
 
+  const { t } = useLanguage();
+
   return (
     <div className="max-w-4xl mx-auto px-4 animate-fade-in">
-      <h1 className="text-4xl font-bold mb-8 text-center">Metronome</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">{t('metronome.title')}</h1>
       
       <div className="bg-gray-800 rounded-lg p-8">
         <div className="flex flex-col items-center space-y-8">
@@ -141,31 +144,31 @@ export default function Metronome() {
       
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-gray-800 rounded-lg p-6">
-          <h2 className="text-xl font-semibold mb-4">Common Tempos</h2>
+          <h2 className="text-xl font-semibold mb-4">{t('metronome.commonTempos')}</h2>
           <div className="grid grid-cols-2 gap-4">
             <button
               onClick={() => setBpm(60)}
               className="p-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors"
             >
-              Slow (60 BPM)
+              {t('metronome.slow')} (60 BPM)
             </button>
             <button
               onClick={() => setBpm(90)}
               className="p-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors"
             >
-              Moderate (90 BPM)
+              {t('metronome.moderate')} (90 BPM)
             </button>
             <button
               onClick={() => setBpm(120)}
               className="p-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors"
             >
-              Fast (120 BPM)
+              {t('metronome.fast')} (120 BPM)
             </button>
             <button
               onClick={() => setBpm(140)}
               className="p-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors"
             >
-              Very Fast (140 BPM)
+              {t('metronome.veryFast')} (140 BPM)
             </button>
           </div>
         </div>
@@ -173,10 +176,10 @@ export default function Metronome() {
         <div className="bg-gray-800 rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Tips</h2>
           <ul className="space-y-2 text-gray-300">
-            <li>• Choose your preferred sound</li>
-            <li>• Practice with headphones</li>
-            <li>• Start slower than needed</li>
-            <li>• Use visual beat indicator</li>
+          <li>• {t('metronome.tips.sound')}</li>
+            <li>• {t('metronome.tips.headphones')}</li>
+            <li>• {t('metronome.tips.slower')}</li>
+            <li>• {t('metronome.tips.visual')}</li>
           </ul>
         </div>
       </div>
