@@ -49,7 +49,15 @@ const translations = {
     'pad.howTo.select': 'Select your desired key',
     'pad.howTo.play': 'Click play to start the pad',
     'pad.howTo.volume': 'Adjust volume as needed',
-    'pad.howTo.change': 'Change keys seamlessly while playing'
+    'pad.howTo.change': 'Change keys seamlessly while playing',
+    'pad.me.desc':'Hello, my name is Mauricio Costa. I am a simple musician and passionate software developer who created WorshipPad to serve the community of musicians. With years of experience in both music ministry and software development, I understand the unique needs of worship teams and aim to provide tools that enhance the experience of musicians.',
+    'pad.me.title':'About the Developer',
+    'pad.metronomecard.desc':'Keep perfect time with our digital metronome',
+    'pad.metronomecard.title':'Metronome',
+    'pad.ambientcard.desc': 'Create beautiful atmospheric sounds for worship',
+    'pad.welcome.title': 'Welcome to WorshipPad',
+    'pad.welcome.desc':'Enhance your worship experience with our infinite piano pad and precise metronome tools.',
+
   },
   pt: {
     'nav.home': 'Início',
@@ -101,7 +109,14 @@ const translations = {
     'pad.howTo.select': 'Selecione o tom desejado',
     'pad.howTo.play': 'Clique em tocar para iniciar o pad',
     'pad.howTo.volume': 'Ajuste o volume conforme necessário',
-    'pad.howTo.change': 'Mude de tom suavemente enquanto toca'
+    'pad.howTo.change': 'Mude de tom suavemente enquanto toca',
+    'pad.me.desc':'Olá! chamo-me Mauricio Costa Sou um simples músico e desenvolvedor de software apaixonado que criou o WorshipPad para servir a comunidade de músicos. Com anos de experiência tanto no ministério da música como no desenvolvimento de software, compreendo as necessidades únicas das equipas de culto e pretendo fornecer ferramentas que melhorem a experiência de músicos.',
+    'pad.me.title':'Sobre o desenvolvedor',
+    'pad.metronomecard.desc':'Mantenha o tempo perfeito com o nosso metrónomo digital',
+    'pad.metronomecard.title':'Metrónomo',
+    'pad.ambientcard.desc':'Crie belos sons atmosféricos para o culto',
+    'pad.welcome.title': 'Bem-vindo ao WorshipPad',
+    'pad.welcome.desc':'Melhore a sua experiência de adoração com o nosso teclado de piano infinito e ferramentas de metrónomo precisas.'
   }
 };
 
