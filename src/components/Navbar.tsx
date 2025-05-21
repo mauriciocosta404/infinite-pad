@@ -51,7 +51,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center">
             <img src='/assets/logo.png' width={50} className={`${theme === 'dark' ? 'text-dark-primary' : 'text-light-primary'}`} />
             <span className={`text-xl font-bold ${theme === 'dark' ? 'text-dark-text' : 'text-light-text'}`}>
-              WorshipPad
+              BeatSync
             </span>
           </Link>
           
